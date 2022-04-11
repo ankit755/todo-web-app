@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +14,14 @@
 |
 */
 
-Route::get('/', 'TodosController@index');
+Route::get('/',[TodosController::class, 'index']);
+Route::get('/create',[TodosController::class, 'create']);
+Route::get('/todo/{id}',[TodosController::class, 'show']);
+Route::get('/todo/{id}/edit',[TodosController::class, 'edit']);
+Route::put('/todo/{id}',[TodosController::class, 'update']);
+//Route::get('/todo/{id}/delete',[TodosController::class, 'destroy']);
+Route::post('/store', [TodosController::class, 'store']);
 
-Route::resource('todo', 'TodosController');
+
+
+Route::resource('todo','TodosController::class');
